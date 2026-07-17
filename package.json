@@ -1,0 +1,15 @@
+{
+  "name": "silverwright-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && node scripts/prepare-sites-build.mjs",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
+    "astro": "^5.12.0"
+  }
+}

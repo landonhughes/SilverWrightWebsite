@@ -1,0 +1,195 @@
+---
+import "@fontsource-variable/inter";
+import "../styles/global.css";
+import logoUrl from "../../silverwright/logo.svg";
+
+const services = [
+  {
+    number: "01",
+    title: "Digital Products",
+    text: "Purpose-built websites and applications that turn complex ideas into clear, useful experiences."
+  },
+  {
+    number: "02",
+    title: "Brand Systems",
+    text: "Distinct identities with the strategic and visual foundations to stay coherent as you grow."
+  },
+  {
+    number: "03",
+    title: "Creative Technology",
+    text: "Interactive ideas, prototypes, and digital experiments engineered to make people stop and look."
+  }
+];
+
+const principles = [
+  ["Clarity over clutter", "Every element earns its place."],
+  ["Built to endure", "Fast, flexible, and ready to evolve."],
+  ["Distinct by design", "No templates. No borrowed personality."]
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta
+      name="description"
+      content="SilverWright is an independent digital studio crafting brands, products, and experiences with precision."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SilverWright — Digital craft, made distinct." />
+    <meta
+      property="og:description"
+      content="An independent creative studio shaping bold brands, thoughtful products, and memorable digital experiences."
+    />
+    <meta property="og:image" content="/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SilverWright — Digital craft, made distinct." />
+    <meta
+      name="twitter:description"
+      content="An independent creative studio shaping bold brands, thoughtful products, and memorable digital experiences."
+    />
+    <meta name="twitter:image" content="/og.png" />
+    <meta name="theme-color" content="#080808" />
+    <title>SilverWright — Digital craft, made distinct.</title>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#top" aria-label="SilverWright home">
+          <img src={logoUrl.src} alt="" width="28" height="30" />
+          <span>SilverWright</span>
+        </a>
+
+        <nav aria-label="Main navigation">
+          <a href="#work">What we do</a>
+          <a href="#approach">Approach</a>
+        </nav>
+
+        <a class="header-cta" href="mailto:hello@silverwright.co">
+          Start a project
+          <span aria-hidden="true">↗</span>
+        </a>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-kicker reveal">
+            <span class="status-dot"></span>
+            Independent creative studio
+          </div>
+
+          <h1 id="hero-title" class="reveal reveal-delay-1">
+            Digital craft,
+            <span>made distinct.</span>
+          </h1>
+
+          <div class="hero-bottom reveal reveal-delay-2">
+            <p>
+              We shape bold brands, thoughtful products, and memorable digital
+              experiences for ambitious people.
+            </p>
+            <a class="circle-link" href="#work" aria-label="Explore what we do">
+              <span>Explore</span>
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+
+          <div class="hero-mark" aria-hidden="true">
+            <img src={logoUrl.src} alt="" />
+          </div>
+        </section>
+
+        <section class="manifesto" id="approach">
+          <p class="eyebrow">The SilverWright standard</p>
+          <div class="manifesto-copy">
+            <p>
+              Good work solves the problem.
+              <strong>Great work changes the atmosphere.</strong>
+            </p>
+            <p class="manifesto-note">
+              We bring strategy, design, and technology together under one roof—
+              giving ideas the focus and finish they deserve.
+            </p>
+          </div>
+        </section>
+
+        <section class="services" id="work" aria-labelledby="services-title">
+          <div class="section-heading">
+            <p class="eyebrow">Capabilities</p>
+            <h2 id="services-title">What we make</h2>
+          </div>
+
+          <div class="service-list">
+            {services.map((service) => (
+              <article class="service-card">
+                <span class="service-number">{service.number}</span>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+                <span class="service-arrow" aria-hidden="true">↗</span>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section class="principles" aria-labelledby="principles-title">
+          <div class="principles-intro">
+            <p class="eyebrow">How we work</p>
+            <h2 id="principles-title">Sharp thinking.<br />Clean execution.</h2>
+          </div>
+          <div class="principle-list">
+            {principles.map(([title, text], index) => (
+              <div class="principle">
+                <span>0{index + 1}</span>
+                <div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section class="contact">
+          <div class="contact-glow" aria-hidden="true"></div>
+          <p class="eyebrow">Have something in mind?</p>
+          <h2>Let’s make it<br /><em>unmistakable.</em></h2>
+          <a href="mailto:hello@silverwright.co">
+            hello@silverwright.co
+            <span aria-hidden="true">↗</span>
+          </a>
+        </section>
+      </main>
+
+      <footer>
+        <a class="brand" href="#top" aria-label="SilverWright home">
+          <img src={logoUrl.src} alt="" width="24" height="25" />
+          <span>SilverWright</span>
+        </a>
+        <p>Independent by choice. Precise by nature.</p>
+        <p>© {new Date().getFullYear()} SilverWright</p>
+      </footer>
+    </div>
+
+    <script>
+      const revealItems = document.querySelectorAll(
+        ".service-card, .principle, .manifesto-copy, .section-heading"
+      );
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      revealItems.forEach((item) => observer.observe(item));
+    </script>
+  </body>
+</html>

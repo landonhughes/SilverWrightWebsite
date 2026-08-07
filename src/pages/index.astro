@@ -2,6 +2,10 @@
 import "@fontsource-variable/inter";
 import "../styles/global.css";
 import logoUrl from "../../silverwright/logo.svg";
+
+const siteUrl = "https://silverwright.com";
+const pageTitle = "SilverWright — Digital products with clarity";
+const pageDescription = "SilverWright is an independent digital studio creating thoughtful iOS apps, digital products, and engaging experiences.";
 ---
 
 <!doctype html>
@@ -9,9 +13,34 @@ import logoUrl from "../../silverwright/logo.svg";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="SilverWright creates clear, engaging digital products." />
+    <meta name="description" content={pageDescription} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="SilverWright LLC" />
     <meta name="theme-color" content="#07111f" />
-    <title>SilverWright — Digital products with clarity</title>
+    <link rel="canonical" href={siteUrl} />
+    <link rel="icon" type="image/svg+xml" href={logoUrl.src} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={`${siteUrl}/og.png`} />
+    <meta property="og:image:alt" content="SilverWright digital studio" />
+    <meta property="og:site_name" content="SilverWright" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={`${siteUrl}/og.png`} />
+    <title>{pageTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "SilverWright LLC",
+      url: siteUrl,
+      logo: `${siteUrl}/og.png`,
+      description: pageDescription,
+      areaServed: "Worldwide",
+      address: { "@type": "PostalAddress", addressLocality: "Detroit", addressRegion: "MI", addressCountry: "US" }
+    })}></script>
   </head>
   <body>
     <main class="site-shell" id="top">

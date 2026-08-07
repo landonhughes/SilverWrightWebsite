@@ -17,20 +17,25 @@ import logoUrl from "../../silverwright/logo.svg";
     <main class="canvas" id="top">
       <section class="main-stage" aria-labelledby="headline">
         <header class="topbar">
-          <a class="top-brand" href="#top" aria-label="SilverWright home">
-            <img src={logoUrl.src} alt="" width="20" height="22" />
-            <span>SilverWright</span>
-          </a>
+          <div class="brand-stack">
+            <a class="top-brand" href="#top" aria-label="SilverWright home">
+              <img src={logoUrl.src} alt="" width="30" height="33" />
+              <span>SilverWright</span>
+            </a>
+            <p class="pretitle typing-label" aria-label="Makers, Crafters, Designers, Developers">
+              <span id="typing-text" aria-live="polite"></span><span class="typing-cursor" aria-hidden="true"></span>
+            </p>
+          </div>
           <span>Detroit / Worldwide</span>
         </header>
 
         <div class="hero-copy">
-          <p class="pretitle">Designing the moments between intent and impact</p>
           <h1 id="headline">
             <span class="title-line title-creating">Creating</span>
             <span class="title-line title-engaging">engaging</span>
             <span class="title-line title-experiences">digital experiences</span>
           </h1>
+          <p class="status-pill"><span class="status-dot" aria-hidden="true"></span>Currently working on an iOS App <span aria-hidden="true">—</span> Coming Soon</p>
         </div>
 
         <div class="abstract-field" aria-hidden="true">
@@ -46,9 +51,44 @@ import logoUrl from "../../silverwright/logo.svg";
       </section>
     </main>
 
+    <footer class="site-footer">
+      SilverWright LLC © <span id="current-year">2026</span>
+    </footer>
+
     <script>
       const stage = document.querySelector(".main-stage");
       const pulse = document.querySelector(".cursor-pulse");
+      const currentYear = document.querySelector("#current-year");
+      const typingText = document.querySelector("#typing-text");
+
+      if (currentYear) currentYear.textContent = String(new Date().getFullYear());
+
+      if (typingText) {
+        const words = ["Makers", "Crafters", "Designers", "Developers"];
+        let wordIndex = 0;
+        let characterIndex = 0;
+        let deleting = false;
+
+        const typeNext = () => {
+          const word = words[wordIndex];
+          characterIndex += deleting ? -1 : 1;
+          typingText.textContent = word.slice(0, characterIndex);
+
+          let delay = deleting ? 62 : 105;
+          if (!deleting && characterIndex === word.length) {
+            deleting = true;
+            delay = 1400;
+          } else if (deleting && characterIndex === 0) {
+            deleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            delay = 320;
+          }
+
+          window.setTimeout(typeNext, delay);
+        };
+
+        typeNext();
+      }
 
       stage?.addEventListener("pointermove", (event) => {
         const bounds = stage.getBoundingClientRect();

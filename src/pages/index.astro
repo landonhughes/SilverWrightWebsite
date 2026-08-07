@@ -9,61 +9,51 @@ import logoUrl from "../../silverwright/logo.svg";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="SilverWright creates engaging digital experiences." />
-    <meta name="theme-color" content="#171819" />
-    <title>SilverWright — Creating engaging digital experiences</title>
+    <meta name="description" content="SilverWright creates clear, engaging digital products." />
+    <meta name="theme-color" content="#07111f" />
+    <title>SilverWright — Digital products with clarity</title>
   </head>
   <body>
-    <main class="canvas" id="top">
-      <section class="main-stage" aria-labelledby="headline">
-        <header class="topbar">
-          <div class="brand-stack">
-            <a class="top-brand" href="#top" aria-label="SilverWright home">
-              <img src={logoUrl.src} alt="" width="30" height="33" />
-              <span>SilverWright</span>
-            </a>
-            <p class="pretitle typing-label" aria-label="Makers, Crafters, Designers, Developers">
-              <span id="typing-text" aria-live="polite"></span><span class="typing-cursor" aria-hidden="true"></span>
-            </p>
-          </div>
-          <span>Detroit / Worldwide</span>
-        </header>
+    <main class="site-shell" id="top">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="SilverWright home">
+          <img src={logoUrl.src} alt="" width="30" height="33" />
+          <span>SilverWright</span>
+        </a>
+        <span class="location"><i></i>Detroit / Worldwide</span>
+      </nav>
 
-        <div class="hero-copy">
-          <h1 id="headline">
-            <span class="title-line title-creating">Creating</span>
-            <span class="title-line title-engaging">engaging</span>
-            <span class="title-line title-experiences">digital experiences</span>
-          </h1>
-          <p class="status-pill"><span class="status-dot" aria-hidden="true"></span>Building something for iOS <span aria-hidden="true">·</span> Coming soon</p>
+      <section class="hero" aria-labelledby="headline">
+        <div class="hero-content">
+          <p class="eyebrow"><span>01</span><span class="typing-label"><span id="typing-text" aria-live="polite"></span><span class="typing-cursor" aria-hidden="true"></span></span></p>
+          <h1 id="headline">Creating<br /><em>engaging</em><br />digital experiences</h1>
         </div>
 
-        <div class="abstract-field" aria-hidden="true">
-          <img class="app-icon-logo" src={logoUrl.src} alt="" />
-          <span class="field-orbit orbit-one"></span>
-          <span class="field-orbit orbit-two"></span>
-          <span class="field-dot"></span>
+        <div class="hero-art" aria-label="SilverWright logo artwork">
+          <div class="art-glow"></div>
+          <div class="art-grid"></div>
+          <div class="orbital orbital-large"></div>
+          <div class="orbital orbital-small"></div>
+          <div class="logo-orb"><img src={logoUrl.src} alt="" /></div>
         </div>
-
-        <div class="bottom-row">
-          <p>iOS apps &amp; digital products<br />with a point of view.</p>
-        </div>
-        <div class="cursor-pulse" aria-hidden="true"></div>
       </section>
+
+      <section class="studio-strip" id="studio">
+        <p><span class="section-number">02</span> Currently building</p>
+        <div><strong>Something new for iOS</strong><span class="status"><i></i> Coming soon</span></div>
+      </section>
+
+      <footer class="footer" id="contact">
+        <span>SilverWright LLC © <span id="current-year">2026</span></span>
+        <a href="mailto:hello@silverwright.co">hello@silverwright.co ↗</a>
+      </footer>
     </main>
 
-    <footer class="site-footer">
-      SilverWright LLC © <span id="current-year">2026</span>
-    </footer>
-
     <script>
-      const stage = document.querySelector(".main-stage");
-      const pulse = document.querySelector(".cursor-pulse");
-      const currentYear = document.querySelector("#current-year");
+      const year = document.querySelector("#current-year");
+      if (year) year.textContent = String(new Date().getFullYear());
+
       const typingText = document.querySelector("#typing-text");
-
-      if (currentYear) currentYear.textContent = String(new Date().getFullYear());
-
       if (typingText) {
         const words = ["Makers", "Crafters", "Designers", "Developers"];
         let wordIndex = 0;
@@ -90,19 +80,6 @@ import logoUrl from "../../silverwright/logo.svg";
 
         typeNext();
       }
-
-      stage?.addEventListener("pointermove", (event) => {
-        const bounds = stage.getBoundingClientRect();
-        pulse?.style.setProperty("--x", `${event.clientX - bounds.left}px`);
-        pulse?.style.setProperty("--y", `${event.clientY - bounds.top}px`);
-        pulse?.classList.add("is-visible");
-      });
-
-      stage?.addEventListener("pointerleave", () => pulse?.classList.remove("is-visible"));
-      stage?.addEventListener("pointerdown", () => {
-        pulse?.classList.remove("is-pulsing");
-        requestAnimationFrame(() => pulse?.classList.add("is-pulsing"));
-      });
     </script>
   </body>
 </html>
